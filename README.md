@@ -1,4 +1,7 @@
 # Návod pro použití pluginu CCT
+
+Pro podrobnější návod včetně obrázků (https://github.com/nipaba/muni.diploma.project/blob/master/N%C3%A1vod.pdf)
+
 ## Instalace
 Pro plugin Connected Component Tree (CCT) je nutné mít nainstalováno program ImageJ 2.0 (https://imagej.net/Welcome) a Javu ve verzi 8. Pro nainstalování pluginu je nutné soubor CCT-plugin.jar nakopírovat do složky plugins v adresáři s programem ImageJ. 
 
