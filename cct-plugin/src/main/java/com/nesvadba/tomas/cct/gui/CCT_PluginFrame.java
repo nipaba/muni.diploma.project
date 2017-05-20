@@ -696,7 +696,7 @@ public class CCT_PluginFrame extends PlugInFrame {
                 writer.write(str.toString());
                 writer.close();
             } catch (FileNotFoundException | UnsupportedEncodingException ex) {
-                // TODO
+               
             }
         }
     }
@@ -775,7 +775,7 @@ public class CCT_PluginFrame extends PlugInFrame {
     }// GEN-LAST:event_avgIntenzityCheckStateChanged
 
     private void avgIntenzityCheckActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_avgIntenzityCheckActionPerformed
-        // TODO NOT NEEDED
+
     }// GEN-LAST:event_avgIntenzityCheckActionPerformed
 
     private void maxAvgIntSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {// GEN-FIRST:event_maxAvgIntSpinnerStateChanged

@@ -101,7 +101,6 @@ public class SegComparator2 {
         if (isShape) {
             type = CUST_SHAPE;
         }
-        System.out.println("SegComparator2 : concreteJaccard := " + filterProperties); // TODO LOG REMOVE
         for (Component c : maskComponents.values()) {
 
             if (isMax) {
@@ -133,7 +132,7 @@ public class SegComparator2 {
             }
         }
         labelFount = label;
-        return jaccard; // TODO label
+        return jaccard;
 
     }
 
@@ -188,17 +187,14 @@ public class SegComparator2 {
             m = calculateRegistration(shapeTreeNode);
         }
 
-        int tp = m.getMaskHits();
-        int fn = m.getFilteredMiss();
-        int fp = m.getMaskMiss();
-
-        int maskSize = m.getMaskHits() + m.getMaskMiss();
-        double sizeDiffPenalization = 1.0 - Math.abs(maskSize - m.getFilteredSize()) * 1.0 / Math.abs(maskSize + m.getFilteredSize());
-
+        int tp = m.getFilteredSize() - m.getFilteredMiss();
+        int fp = m.getFilteredMiss();
+        int fn = m.getMaskMiss()+ Math.abs(m.getMaskHits()-tp) ;
+        
         totalCompPix = tempTotalCompPix;
         maskComponents = tempMaskComponents;
 
-        return jaccard(tp, fn, fp) * sizeDiffPenalization;
+        return jaccard(tp, fn, fp);
 
     }
 
@@ -665,14 +661,11 @@ public class SegComparator2 {
             str.append(m.getFn()).append(SEP);
             str.append(formatter.format(jaccard(m.getTp(), m.getFp(), m.getFn())).replace(".", ",")).append(SEP);
 
-            int tp = m.getMaskHits();
-            int fn = m.getFilteredMiss();
-            int fp = m.getMaskMiss();
+            int tp = m.getFilteredSize() - m.getFilteredMiss();
+            int fp = m.getFilteredMiss();
+            int fn = m.getMaskMiss()+ Math.abs(m.getMaskHits()-tp) ;
 
-            int maskSize = m.getMaskHits() + m.getMaskMiss();
-            double sizeDiffPenalization = 1.0 - Math.abs(maskSize - m.getFilteredSize()) * 1.0 / Math.abs(maskSize + m.getFilteredSize());
-
-            str.append(formatter.format(jaccard(tp, fn, fp) * sizeDiffPenalization)).append(EOL);
+            str.append(formatter.format(jaccard(tp, fn, fp))).append(EOL);
 
         }
 
