@@ -44,8 +44,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * 
+ * @author Nesvadba Tomáš, učo 395902 - Diplomová práce
  *
- * @author nipaba
  */
 public class CCT_PluginFrame extends PlugInFrame {
 
@@ -689,8 +690,12 @@ public class CCT_PluginFrame extends PlugInFrame {
         int userSelection = fileChooser.showSaveDialog(this);
 
         if (userSelection == JFileChooser.APPROVE_OPTION) {
+            
             File fileToSave = fileChooser.getSelectedFile();
-
+            if (!fileToSave.getName().endsWith(".csv")){
+                fileToSave = new File(fileToSave.getAbsolutePath()+".csv");
+            }
+            
             try {
                 PrintWriter writer = new PrintWriter(fileToSave, "UTF-8");
                 writer.write(str.toString());
